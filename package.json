@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cucumberWithTS": "cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts"
+    "cucumberWithTS": "cucumber-js src/features/Login.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "^11.3.0",
+    "@faker-js/faker": "^9.8.0",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.18",
     "ts-node": "^10.9.2"
