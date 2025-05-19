@@ -1,4 +1,13 @@
 import { exec } from "child_process";
+import dotenv from 'dotenv';
+dotenv.config({ path: './env/.env'});
+
+//setting retry value from environment variable or defaulting to '0'
+const retryValue = process.env.RETRY || '0';
+
+//setting parallel value from environment variable or defaulting to '1'
+const parallelValue = process.env.PARALLEL || '1';
+
 
 // Define a comman command to run the cucumber test
 
@@ -8,6 +17,8 @@ const comman = `./src/features/*.feature \
 --require ./src/utils/cucumber-timeout.ts \
 -f json:./reports/report.json \
 --format html:./reports/report.html \
+--parallel ${parallelValue} \
+--retry ${retryValue} \
 --tags "not @ignore"`;
 
 // Define an interface for the profile object
