@@ -2,8 +2,11 @@ import { Then, When } from "@cucumber/cucumber";
 import { pageFixture } from "./hooks/browserContextFixture";
 import { expect } from "@playwright/test";
 import { faker } from "@faker-js/faker";
+import { CucumberWorld } from "./world/CucumberWorld";
+import logger from "../logger/logger";
 
-When('I type a first name', async () => {
+When('I type a first name', async function (this: CucumberWorld)  {
+    logger.info(`Accessing url in contact us step file - ${this.getURL()}`);
     await pageFixture.page.locator("input[placeholder='First Name']").fill("Ankit");
 });
 
@@ -17,6 +20,12 @@ When('I type an email address', async () => {
 
 When('I type a comment', async () => {
     await pageFixture.page.locator("textarea[placeholder='Comments']").fill("Demo Text");
+});
+
+When('I type a random comment', async function (this: CucumberWorld)  {
+    await pageFixture.page.locator("textarea[placeholder='Comments']").fill(`Please could you contact me? \n Thanks
+        ${this.getFirstName()} ${this.getLastName()} ${this.getEmailAddress()}`);
+        //await pageFixture.page.pause();
 });
 
 When('I click on the submit button', async () => {
@@ -53,18 +62,21 @@ When('I type a specific comment {string} and a number {int} withing the comment 
     await pageFixture.page.locator("textarea[placeholder='Comments']").fill(word + " " + number);
 });
 
-When('I type a random first name', async () => {
+When('I type a random first name', async function (this: CucumberWorld)  {
     const randomFirstName = faker.person.firstName();
+    this.setFirstName(randomFirstName);
     await pageFixture.page.locator("input[placeholder='First Name']").fill(randomFirstName);
 });
 
-When('I type a random last name', async () => {
+When('I type a random last name', async function (this: CucumberWorld)  {
     const randomLastName = faker.person.lastName();
+    this.setLastName(randomLastName);
     await pageFixture.page.locator("input[placeholder='Last Name']").fill(randomLastName);
 });
 
-When('I type an random email address', async () => {
+When('I type an random email address', async function (this: CucumberWorld)  {
     const randomEmail = faker.internet.email();
+    this.setEmailAddress(randomEmail);
     await pageFixture.page.locator("input[placeholder='Email Address']").fill(randomEmail);
 });
 

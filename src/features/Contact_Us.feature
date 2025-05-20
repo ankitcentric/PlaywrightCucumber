@@ -36,7 +36,7 @@ Feature: webdriveruniversity.com - Contact Us Page
         And I type a random first name
         And I type a random last name
         And I type an random email address
-        And I type a comment
+        And I type a random comment
         And I click on the submit button
         Then I should be presented with a successful contact us submission message
 
