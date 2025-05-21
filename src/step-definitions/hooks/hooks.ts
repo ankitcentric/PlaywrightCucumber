@@ -2,6 +2,7 @@ import { AfterAll, BeforeAll, Before, After, Status } from "@cucumber/cucumber";
 import { Browser, BrowserType, chromium, firefox, webkit } from "@playwright/test";
 import { pageFixture } from "./browserContextFixture";
 import { setGlobalSettins } from "../../utils/playwright-timeouts";
+import { PageManager } from "../../page-objects/base/PageManager";
 
 //Load ENV variable from .env file
 import { config as loadEnv } from "dotenv";
@@ -62,6 +63,11 @@ Before(async function () {
         browserInstance = await initializeBrowserContext(config.browser);
         console.log(`Browser context initialized for: ${config.browser}`);
         await initializePage();
+        
+    //    this.pageManager = new PageManager();
+    //    this.basePage = this.pageManager.createBasePage();
+    //    this.homePage = this.PageManager.createHomePage();
+    //    this.contactUsPage = this.PageManager.createContactUsPage();
     }catch(error){
         console.log('Browser context initialization failed: ',error);
     }

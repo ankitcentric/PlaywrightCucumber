@@ -15,7 +15,7 @@ Feature: webdriveruniversity - Login Page
             | webdriver | webdriver123 | validation succeeded |
             | webdriver | 123asdqw     | validation failed    |
             
-        @smoke
+        #@smoke
         Examples:
             | userName  | password     | expectAlertText      |
             | webdriver | webdriver123 | validation succeeded |
