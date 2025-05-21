@@ -1,5 +1,4 @@
 import { Then, When } from "@cucumber/cucumber";
-import { pageFixture } from "./hooks/browserContextFixture";
 import { expect } from "@playwright/test";
 import { CucumberWorld } from "./world/CucumberWorld";
 
